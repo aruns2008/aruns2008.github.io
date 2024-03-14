@@ -4,7 +4,7 @@ function msg() {
 function msg2() {
   document.getElementById("show").style.top = "-610px";
 }
-
+ 
 const inputs = document.querySelectorAll(".input");
 
 function focusFunc() {
