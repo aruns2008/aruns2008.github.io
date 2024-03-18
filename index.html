@@ -1,6 +1,43 @@
+<head>
+
+    <script>
+   //prehiding snippet for Adobe Target with asynchronous tags deployment
+   ;(function(win, doc, style, timeout) {
+   var STYLE_ID = 'at-body-style';
+   function getParent() {
+      return doc.getElementsByTagName('head')[0];
+   }
+   function addStyle(parent, id, def) {
+      if (!parent) {
+      return;
+      }
+      var style = doc.createElement('style');
+      style.id = id;
+      style.innerHTML = def;
+      parent.appendChild(style);
+   }
+   function removeStyle(parent, id) {
+      if (!parent) {
+      return;
+      }
+      var style = doc.getElementById(id);
+      if (!style) {
+      return;
+      }
+      parent.removeChild(style);
+   }
+   addStyle(getParent(), STYLE_ID, style);
+   setTimeout(function() {
+      removeStyle(getParent(), STYLE_ID);
+   }, timeout);
+   }(window, document, "body {opacity: 0 !important}", 3000));
+</script>
+
 <!-- Adobe Launch Code -->	 
-<script src="https://assets.adobedtm.com/39f2eaa670f1/4ddf3cb43804/launch-f50f4f772070-development.min.js" async></script>
+<script src="https://assets.adobedtm.com/35066b6d6803/99d34ee61985/launch-4794e1103b2d-development.min.js" async></script>
 <!-- End Adobe Launch Code -->
+
+</head>
 <style>@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 
 * {
