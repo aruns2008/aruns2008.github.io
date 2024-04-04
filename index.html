@@ -1,6 +1,38 @@
 <!DOCTYPE html>
  <head>
+<script src="//cdn.tt.omtrdc.net/cdn/target.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Example of safely calling Adobe Target after DOM is loaded
+            try {
+		    adobe.target.getOffer({
+			  "mbox": "target-global-mbox",
+			  "params": {
+			    "param1": "value1", // Your specific parameters here
+			    // Additional parameters as needed
+			  },
+			  "success": function(offer) {
+			    adobe.target.applyOffer( { "mbox": "target-global-mbox", "offer": offer } );
+			  },
+			  "error": function(error) {
+			    console.log('Error', error);
+			  }
+			});
+            } catch (error) {
+                console.error('Adobe Target not initialized', error);
+            }
 
+            // Example of adding click event listener safely
+            var trackClickElement = document.getElementById('at-track-click-1712144910743697');
+            if (trackClickElement) {
+                trackClickElement.addEventListener('click', function() {
+                    // your tracking code here
+                });
+            } else {
+                console.error('Metric element not found');
+            }
+        });
+    </script>
 <script>
     //prehiding snippet for Adobe Target with asynchronous Launch deployment
     (function(g,b,d,f){(function(a,c,d){if(a){var e=b.createElement("style");e.id=c;e.innerHTML=d;a.appendChild(e)}})(b.getElementsByTagName("head")[0],"at-body-style",d);setTimeout(function(){var a=b.getElementsByTagName("head")[0];if(a){var c=b.getElementById("at-body-style");c&&a.removeChild(c)}},f)})(window,document,"body {opacity: 0 !important}",3E3);
@@ -56,19 +88,7 @@
 	// }
   
 
-adobe.target.getOffer({
-  "mbox": "target-global-mbox",
-  "params": {
-    "param1": "value1", // Your specific parameters here
-    // Additional parameters as needed
-  },
-  "success": function(offer) {
-    adobe.target.applyOffer( { "mbox": "target-global-mbox", "offer": offer } );
-  },
-  "error": function(error) {
-    console.log('Error', error);
-  }
-});
+
 
 </script>
 	 
