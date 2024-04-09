@@ -6,6 +6,41 @@
     //prehiding snippet for Adobe Target with asynchronous Launch deployment
     (function (g, b, d, f) { (function (a, c, d) { if (a) { var e = b.createElement("style"); e.id = c; e.innerHTML = d; a.appendChild(e) } })(b.getElementsByTagName("head")[0], "at-body-style", d); setTimeout(function () { var a = b.getElementsByTagName("head")[0]; if (a) { var c = b.getElementById("at-body-style"); c && a.removeChild(c) } }, f) })(window, document, "body {opacity: 0 !important}", 3E3);
   </script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Function to handle form submission
+    function handleFormSubmit(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      const form = event.target;
+      const formData = new FormData(form);
+      const formEntries = {};
+
+      for (const [key, value] of formData.entries()) {
+        formEntries[key] = value;
+      }
+
+      // Pushing data to the data layer
+      window.dataLayer.push({
+        event: 'formSubmission',
+        formId: form.id,
+        formData: formEntries
+      });
+
+      // Optionally, submit the form via AJAX or another method
+      console.log('Data Layer:', window.dataLayer);
+    }
+
+    // Attach the event listener to forms
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+      form.addEventListener('submit', handleFormSubmit);
+    });
+  });
+</script>
 
   <script>
     var randomNumber = Math.floor(Math.random() * 10);
